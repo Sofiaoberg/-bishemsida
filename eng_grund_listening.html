@@ -10,7 +10,7 @@
             font-family: 'Times New Roman', Times, serif; 
             background: radial-gradient(circle at top, #1e1b4b 0%, #0f172a 100%);
             color: #f8fafc;
-            min-height: screen;
+            min-height: 100vh;
         }
 
         .glass-panel { 
@@ -30,21 +30,37 @@
             border-left: 4px solid #c084fc;
         }
 
-        .btn-back {
-            transition: all 0.3s ease;
+        /* Modal styling */
+        #contentModal {
+            display: none; /* Dold som standard */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
         }
 
-        .btn-back:hover {
-            transform: translateX(-5px);
-            color: #c084fc;
+        .modal-content {
+            width: 90%;
+            height: 85%;
+            background: #1e1b4b;
+            border: 2px solid rgba(192, 132, 252, 0.3);
+            border-radius: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
         }
 
-        /* Custom checkbox styling */
-        input[type="checkbox"] {
-            accent-color: #c084fc;
-            width: 1.5rem;
-            height: 1.5rem;
-            cursor: pointer;
+        iframe {
+            width: 100%;
+            flex-grow: 1;
+            border: none;
         }
 
         .stars-bg {
@@ -63,13 +79,30 @@
 <body class="py-12 px-6">
     <div class="stars-bg"></div>
 
+    <!-- MODAL FÖNSTER -->
+    <div id="contentModal">
+        <div class="modal-content shadow-2xl">
+            <!-- Modal Header -->
+            <div class="p-4 bg-indigo-950 flex justify-between items-center border-b border-purple-500/30">
+                <span class="italic font-bold text-purple-300">Studiefönster ✨</span>
+                <div class="flex gap-4">
+                    <button onclick="closeModal()" class="text-slate-400 hover:text-white transition-colors font-bold uppercase text-sm tracking-widest">Stäng [X]</button>
+                </div>
+            </div>
+            <!-- Iframe Container -->
+            <iframe id="modalFrame" src=""></iframe>
+            <!-- Fallback Info i botten -->
+            <div class="p-3 bg-indigo-950 text-center text-xs text-slate-500 border-t border-purple-500/20 italic">
+                Om sidan inte laddas korrekt, <a id="fallbackLink" href="#" target="_blank" class="text-purple-400 underline">klicka här för att öppna i ny flik</a>.
+            </div>
+        </div>
+    </div>
+
     <div class="max-w-3xl mx-auto">
-        <!-- Navigering tillbaka -->
-        <a href="index.html" class="btn-back inline-flex items-center text-purple-300 mb-12 font-bold italic">
+        <a href="index.html" class="inline-flex items-center text-purple-300 mb-12 font-bold italic hover:translate-x-[-5px] transition-transform">
             <span class="mr-2">←</span> Tillbaka till portalen
         </a>
 
-        <!-- Header -->
         <header class="mb-12">
             <h1 class="text-4xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-indigo-300 italic mb-4">
                 Listening: Newsreel
@@ -77,23 +110,21 @@
             <p class="text-xl text-slate-400 italic">Engelska grund — Uppdrag: Håll koll på omvärlden.</p>
         </header>
 
-        <!-- Checklist Container -->
         <div class="glass-panel p-8 md:p-12 shadow-2xl">
             <h2 class="text-2xl font-bold mb-8 flex items-center gap-3">
                 <span class="text-purple-400">✨</span> Din Checklista
             </h2>
 
             <div class="space-y-6">
-                
                 <!-- Steg 1 -->
                 <div class="check-item p-6 rounded-xl flex items-start gap-6">
                     <input type="checkbox" id="step1" class="mt-1">
-                    <label for="step1" class="cursor-pointer">
+                    <label class="cursor-pointer flex-grow">
                         <span class="block text-xl font-bold text-white mb-2 italic">1. Lyssna på Newsreel</span>
                         <span class="block text-slate-400 mb-4">Börja med att lyssna på serien Newsreel för att träna din hörförståelse.</span>
-                        <a href="https://urplay.se/serie/243989-newsreel" target="_blank" class="inline-block bg-purple-600 hover:bg-purple-500 text-white px-6 py-2 rounded-lg font-bold text-sm uppercase transition-colors">
-                            Öppna UR Play 🎧
-                        </a>
+                        <button onclick="openModal('https://urplay.se/serie/243989-newsreel')" class="inline-block bg-purple-600 hover:bg-purple-500 text-white px-6 py-2 rounded-lg font-bold text-sm uppercase transition-colors">
+                            Öppna här 🎧
+                        </button>
                     </label>
                 </div>
 
@@ -102,24 +133,46 @@
                 <!-- Steg 2 -->
                 <div class="check-item p-6 rounded-xl flex items-start gap-6">
                     <input type="checkbox" id="step2" class="mt-1">
-                    <label for="step2" class="cursor-pointer">
+                    <label class="cursor-pointer flex-grow">
                         <span class="block text-xl font-bold text-white mb-2 italic">2. Testa dig själv</span>
                         <span class="block text-slate-400 mb-4">När du har lyssnat färdigt är det dags att se hur mycket du minns.</span>
-                        <a href="https://urplay.se/program/244002-newsreel-2026-04-18/quiz/244002" target="_blank" class="inline-block border border-purple-400 text-purple-300 hover:bg-purple-400 hover:text-white px-6 py-2 rounded-lg font-bold text-sm uppercase transition-all">
-                            Starta Quiz ✍️
+                        <button onclick="openModal('https://urplay.se/program/244002-newsreel-2026-04-18/quiz/244002')" class="inline-block border border-purple-400 text-purple-300 hover:bg-purple-400 hover:text-white px-6 py-2 rounded-lg font-bold text-sm uppercase transition-all">
+                            Starta Quiz här ✍️
                         </a>
                     </label>
                 </div>
-
             </div>
         </div>
 
-        <!-- Footer Info -->
-        <footer class="mt-12 text-center">
-            <p class="text-slate-500 text-sm italic">
-                Tips: Lyssna flera gånger om det känns svårt. Du klarar det här! 🚀
-            </p>
+        <footer class="mt-12 text-center text-slate-500 text-sm italic">
+            Tips: Lyssna flera gånger om det känns svårt. Du klarar det här! 🚀
         </footer>
     </div>
+
+    <script>
+        const modal = document.getElementById('contentModal');
+        const frame = document.getElementById('modalFrame');
+        const fallback = document.getElementById('fallbackLink');
+
+        function openModal(url) {
+            frame.src = url;
+            fallback.href = url;
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Hindrar scroll på bakgrunden
+        }
+
+        function closeModal() {
+            modal.style.display = 'none';
+            frame.src = ""; // Rensar iframen när den stängs
+            document.body.style.overflow = 'auto';
+        }
+
+        // Stäng modal om man klickar utanför innehållet
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
 </body>
 </html>
