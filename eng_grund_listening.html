@@ -1,1 +1,125 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listening - Engelska Grund</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { 
+            font-family: 'Times New Roman', Times, serif; 
+            background: radial-gradient(circle at top, #1e1b4b 0%, #0f172a 100%);
+            color: #f8fafc;
+            min-height: screen;
+        }
 
+        .glass-panel { 
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 2rem;
+        }
+
+        .check-item {
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+
+        .check-item:hover {
+            background: rgba(192, 132, 252, 0.1);
+            border-left: 4px solid #c084fc;
+        }
+
+        .btn-back {
+            transition: all 0.3s ease;
+        }
+
+        .btn-back:hover {
+            transform: translateX(-5px);
+            color: #c084fc;
+        }
+
+        /* Custom checkbox styling */
+        input[type="checkbox"] {
+            accent-color: #c084fc;
+            width: 1.5rem;
+            height: 1.5rem;
+            cursor: pointer;
+        }
+
+        .stars-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image: radial-gradient(white, rgba(255,255,255,0.2) 2px, transparent 40px);
+            background-size: 250px 250px;
+            opacity: 0.1;
+        }
+    </style>
+</head>
+<body class="py-12 px-6">
+    <div class="stars-bg"></div>
+
+    <div class="max-w-3xl mx-auto">
+        <!-- Navigering tillbaka -->
+        <a href="index.html" class="btn-back inline-flex items-center text-purple-300 mb-12 font-bold italic">
+            <span class="mr-2">←</span> Tillbaka till portalen
+        </a>
+
+        <!-- Header -->
+        <header class="mb-12">
+            <h1 class="text-4xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-indigo-300 italic mb-4">
+                Listening: Newsreel
+            </h1>
+            <p class="text-xl text-slate-400 italic">Engelska grund — Uppdrag: Håll koll på omvärlden.</p>
+        </header>
+
+        <!-- Checklist Container -->
+        <div class="glass-panel p-8 md:p-12 shadow-2xl">
+            <h2 class="text-2xl font-bold mb-8 flex items-center gap-3">
+                <span class="text-purple-400">✨</span> Din Checklista
+            </h2>
+
+            <div class="space-y-6">
+                
+                <!-- Steg 1 -->
+                <div class="check-item p-6 rounded-xl flex items-start gap-6">
+                    <input type="checkbox" id="step1" class="mt-1">
+                    <label for="step1" class="cursor-pointer">
+                        <span class="block text-xl font-bold text-white mb-2 italic">1. Lyssna på Newsreel</span>
+                        <span class="block text-slate-400 mb-4">Börja med att lyssna på serien Newsreel för att träna din hörförståelse.</span>
+                        <a href="https://urplay.se/serie/243989-newsreel" target="_blank" class="inline-block bg-purple-600 hover:bg-purple-500 text-white px-6 py-2 rounded-lg font-bold text-sm uppercase transition-colors">
+                            Öppna UR Play 🎧
+                        </a>
+                    </label>
+                </div>
+
+                <div class="h-px bg-white/10 mx-6"></div>
+
+                <!-- Steg 2 -->
+                <div class="check-item p-6 rounded-xl flex items-start gap-6">
+                    <input type="checkbox" id="step2" class="mt-1">
+                    <label for="step2" class="cursor-pointer">
+                        <span class="block text-xl font-bold text-white mb-2 italic">2. Testa dig själv</span>
+                        <span class="block text-slate-400 mb-4">När du har lyssnat färdigt är det dags att se hur mycket du minns.</span>
+                        <a href="https://urplay.se/program/244002-newsreel-2026-04-18/quiz/244002" target="_blank" class="inline-block border border-purple-400 text-purple-300 hover:bg-purple-400 hover:text-white px-6 py-2 rounded-lg font-bold text-sm uppercase transition-all">
+                            Starta Quiz ✍️
+                        </a>
+                    </label>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Footer Info -->
+        <footer class="mt-12 text-center">
+            <p class="text-slate-500 text-sm italic">
+                Tips: Lyssna flera gånger om det känns svårt. Du klarar det här! 🚀
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
